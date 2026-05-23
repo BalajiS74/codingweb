@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>C++ Learning Hub - Classic Edition (2000s Style)</title>
+    <style>
+        /* 
+            Old School 2000-2005 Web Design
+            - Table layout, Times New Roman, basic colors, no rounded corners,
+            - subtle gradients, blue links, simple hover effects.
+        */
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #31698e;  /* deep blue background typical of old sites */
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 14px;
+            color: #000000;
+        }
+
+        /* main container table - classic centered layout */
+        .main-table {
+            width: 950px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-collapse: collapse;
+            border: 1px solid #000000;
+            box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+        }
+
+        /* header style: retro gradient / solid */
+        .header {
+            background: #2c3e66;
+            background: linear-gradient(145deg, #1f2b48, #2e4172);
+            color: #ffffff;
+            padding: 18px 20px;
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            letter-spacing: 1px;
+            border-bottom: 3px solid #ffcc33;
+            font-family: 'Times New Roman', Times, serif;
+            text-shadow: 2px 2px 0 #000000;
+        }
+        .header small {
+            font-size: 14px;
+            display: block;
+            color: #ffdd99;
+            margin-top: 5px;
+        }
+
+        /* sidebar - classic gray */
+        .sidebar {
+            width: 220px;
+            background: #e9eef3;
+            padding: 15px 12px;
+            vertical-align: top;
+            border-right: 1px solid #a0a0a0;
+        }
+        .sidebar h3 {
+            margin-top: 0;
+            color: #1e3a5f;
+            font-size: 18px;
+            border-bottom: 2px solid #8ea9c2;
+            padding-bottom: 3px;
+        }
+        .nav-links a {
+            display: block;
+            color: #0000cc;
+            text-decoration: none;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 15px;
+            padding: 6px 0 6px 12px;
+            margin: 4px 0;
+            border-left: 3px solid #7a8daa;
+            background: #f8fafc;
+        }
+        .nav-links a:hover {
+            background: #d4e3f5;
+            color: #cc0000;
+            text-decoration: underline;
+            border-left-color: #ffaa33;
+        }
+        .nav-links a.active-link {
+            background: #c2d6ec;
+            font-weight: bold;
+            border-left-color: #ff9933;
+            color: #003366;
+        }
+
+        /* content area */
+        .content {
+            background: #ffffff;
+            padding: 20px 25px;
+            vertical-align: top;
+        }
+
+        /* section visibility */
+        .section {
+            display: none;
+        }
+        .section.active-section {
+            display: block;
+        }
+
+        h2 {
+            font-size: 22px;
+            color: #1e4663;
+            border-bottom: 2px solid #b0c4de;
+            padding-bottom: 6px;
+            margin-top: 0;
+        }
+        h3 {
+            font-size: 18px;
+            color: #2c5282;
+            margin: 18px 0 8px 0;
+        }
+
+        /* classic code block: black bg, green monospace */
+        pre {
+            background: #000000;
+            color: #33ff33;
+            padding: 12px 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            border: 2px solid #3a6ea5;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            margin: 15px 0;
+        }
+        .output-box {
+            background: #f4f4f4;
+            border: 1px solid #aaaaaa;
+            padding: 8px 12px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+        }
+        hr {
+            border: none;
+            border-top: 1px dashed #888888;
+            margin: 20px 0;
+        }
+
+        /* practice list - old style bullet */
+        .practice-list {
+            list-style-type: square;
+            margin-left: 20px;
+            padding-left: 0;
+        }
+        .practice-list li {
+            margin: 12px 0;
+            line-height: 1.4;
+        }
+        .badge {
+            background: #cce5ff;
+            font-size: 11px;
+            padding: 2px 8px;
+            border: 1px solid #6c8ebf;
+            margin-left: 8px;
+            font-weight: normal;
+        }
+
+        /* footer */
+        .footer {
+            background: #d9e3ed;
+            text-align: center;
+            padding: 12px;
+            font-size: 12px;
+            color: #333;
+            border-top: 1px solid #888;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        /* additional retro touches */
+        a {
+            text-decoration: none;
+        }
+        .hit-counter {
+            font-family: 'Courier New', monospace;
+            background: #000000;
+            color: #33ff33;
+            display: inline-block;
+            padding: 2px 8px;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+        .marquee-text {
+            background: #ffffaa;
+            padding: 3px;
+            font-size: 12px;
+            color: #aa0000;
+            border: 1px solid orange;
+            margin-top: 8px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        function showSection(sectionId) {
+            // hide all sections
+            var sections = document.getElementsByClassName("section");
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].classList.remove("active-section");
+            }
+            // show selected
+            document.getElementById(sectionId).classList.add("active-section");
+            
+            // update active class in navigation links (old style)
+            var links = document.querySelectorAll('.nav-links a');
+            for (var j = 0; j < links.length; j++) {
+                links[j].classList.remove('active-link');
+                if (links[j].getAttribute('onclick') && links[j].getAttribute('onclick').includes(sectionId)) {
+                    links[j].classList.add('active-link');
+                }
+            }
+        }
+        // default on load
+        window.onload = function() {
+            showSection('home');
+        };
+    </script>
+</head>
+<body>
+
+<table class="main-table" cellpadding="0" cellspacing="0">
+    <!-- HEADER SECTION (oldschool) -->
+    <tr>
+        <td colspan="2" class="header">
+            🖥️ C++ Learning Hub 🖥️<br/>
+            <small>Master the language of performance | since 2003 style</small>
+        </td>
+    </tr>
+    
+    <!-- SIDEBAR + CONTENT ROW -->
+    <tr>
+        <!-- SIDEBAR navigation retro -->
+        <td class="sidebar">
+            <h3>📁 Navigation</h3>
+            <div class="nav-links">
+                <a href="#" onclick="showSection('home'); return false;">🏠 Home & Introduction</a>
+                <a href="#" onclick="showSection('basics'); return false;">📘 Core Basics</a>
+                <a href="#" onclick="showSection('controlflow'); return false;">⚙️ Control Flow</a>
+                <a href="#" onclick="showSection('functions'); return false;">🔧 Functions</a>
+                <a href="#" onclick="showSection('oop'); return false;">🧩 OOP (Classes)</a>
+                <a href="#" onclick="showSection('practice'); return false;">✍️ Practice Zone</a>
+            </div>
+            <div class="marquee-text">
+                <marquee behavior="scroll" direction="left" scrollamount="2">✨ Learn C++ the classic way! ✨</marquee>
+            </div>
+            <div style="margin-top: 20px; font-size: 11px; text-align: center;">
+                <span class="hit-counter">Visits: 001284</span><br/>
+                <span style="color:#336699;">© 2005 C++ Hub</span>
+            </div>
+        </td>
+        
+        <!-- MAIN CONTENT (dynamic sections) -->
+        <td class="content">
+            <!-- HOME SECTION -->
+            <div id="home" class="section active-section">
+                <h2>📌 Welcome to the C++ Learning Hub</h2>
+                <p><strong>C++</strong> is a powerful, high-performance programming language that gives you low-level memory control and object-oriented features. Developed by Bjarne Stroustrup at Bell Labs, it became the backbone of systems software, game engines, and real-time applications.</p>
+                <h3>Why learn C++?</h3>
+                <ul>
+                    <li>💪 Blazing fast execution</li>
+                    <li>🎮 Used in AAA games, Unreal Engine</li>
+                    <li>⚙️ Operating systems, embedded systems</li>
+                    <li>📚 Foundation for data structures & algorithms</li>
+                </ul>
+                <pre>
+// First C++ program (classic hello world)
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    cout &lt;&lt; "Hello, 2000s coder!" &lt;&lt; endl;
+    return 0;
+}
+                </pre>
+                <div class="output-box">
+                    <strong>▶ Output:</strong> Hello, 2000s coder!
+                </div>
+                <p>This site follows the <b>old web aesthetic (2000-2005)</b> — clean, table-based layout, Times New Roman font, and straightforward examples. Start exploring the navigation!</p>
+            </div>
+            
+            <!-- BASICS: variables, i/o, hello world -->
+            <div id="basics" class="section">
+                <h2>📘 C++ Basics</h2>
+                <h3>Hello World explained</h3>
+                <pre>
+#include &lt;iostream&gt;   // for input/output
+using namespace std;   // use standard namespace
+
+int main() {
+    cout &lt;&lt; "Hello World" &lt;&lt; endl;
+    return 0;
+}
+                </pre>
+                <h3>Variables & Data Types</h3>
+                <pre>
+int age = 25;
+float price = 19.99f;
+double pi = 3.1415926535;
+char initial = 'J';
+bool isPassed = true;
+
+cout &lt;&lt; "Age: " &lt;&lt; age;
+                </pre>
+                <h3>User Input (cin)</h3>
+                <pre>
+string name;
+cout &lt;&lt; "Enter your name: ";
+cin >> name;
+cout &lt;&lt; "Hello, " &lt;&lt; name;
+                </pre>
+                <div class="output-box">💡 Tip: Use getline(cin, name) to read full line.</div>
+            </div>
+            
+            <!-- CONTROL FLOW: if, loops -->
+            <div id="controlflow" class="section">
+                <h2>⚙️ Control Flow (Conditionals & Loops)</h2>
+                <h3>If-else ladder</h3>
+                <pre>
+int marks;
+cout &lt;&lt; "Enter marks: ";
+cin >> marks;
+if(marks >= 90)
+    cout &lt;&lt; "Grade A";
+else if(marks >= 75)
+    cout &lt;&lt; "Grade B";
+else
+    cout &lt;&lt; "Needs improvement";
+                </pre>
+                <h3>For Loop - print squares</h3>
+                <pre>
+for(int i = 1; i <= 5; i++) {
+    cout &lt;&lt; i*i &lt;&lt; " ";
+}
+// Output: 1 4 9 16 25
+                </pre>
+                <h3>While loop (sum of digits)</h3>
+                <pre>
+int n = 257, sum = 0;
+while(n > 0) {
+    sum += n % 10;
+    n /= 10;
+}
+cout &lt;&lt; "Sum of digits: " &lt;&lt; sum; // 14
+                </pre>
+            </div>
+            
+            <!-- FUNCTIONS -->
+            <div id="functions" class="section">
+                <h2>🔧 Functions in C++</h2>
+                <p>Functions help you reuse code and keep programs modular.</p>
+                <h3>Function example: addition</h3>
+                <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int add(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    int result = add(12, 8);
+    cout &lt;&lt; "Sum = " &lt;&lt; result; // 20
+    return 0;
+}
+                </pre>
+                <h3>Function Overloading</h3>
+                <pre>
+double add(double a, double b) { return a + b; }
+int add(int a, int b, int c) { return a + b + c; }
+                </pre>
+                <h3>Pass by Reference (swap)</h3>
+                <pre>
+void swapNums(int &x, int &y) {
+    int temp = x;
+    x = y;
+    y = temp;
+}
+                </pre>
+                <div class="output-box">⭐ References allow modifying original variables efficiently.</div>
+            </div>
+            
+            <!-- OOP (CLASSES) -->
+            <div id="oop" class="section">
+                <h2>🧩 Object-Oriented Programming</h2>
+                <p>C++ supports classes, inheritance, polymorphism — the heart of OOP.</p>
+                <h3>Class & Object (Car example)</h3>
+                <pre>
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+class Car {
+private:
+    string brand;
+    int year;
+public:
+    Car(string b, int y) : brand(b), year(y) {}
+    void showInfo() {
+        cout &lt;&lt; brand &lt;&lt; " (" &lt;&lt; year &lt;&lt; ")" &lt;&lt; endl;
+    }
+};
+
+int main() {
+    Car myCar("Toyota", 2003);
+    myCar.showInfo();
+    return 0;
+}
+                </pre>
+                <h3>Inheritance example</h3>
+                <pre>
+class Animal {
+protected:
+    string name;
+public:
+    Animal(string n) : name(n) {}
+    void speak() { cout &lt;&lt; "Animal sound"; }
+};
+
+class Dog : public Animal {
+public:
+    Dog(string n) : Animal(n) {}
+    void speak() { cout &lt;&lt; name &lt;&lt; " barks! Woof!"; }
+};
+                </pre>
+                <p>Polymorphism achieved via virtual functions. OOP helps in large-scale software design.</p>
+            </div>
+            
+            <!-- PRACTICE ZONE - exercises -->
+            <div id="practice" class="section">
+                <h2>✍️ Practice Zone – sharpen your C++ skills</h2>
+                <p>Try to solve these classic problems from the early 2000s coding labs. Write code and test!</p>
+                <ul class="practice-list">
+                    <li><strong>🔢 1. Factorial</strong> – Write recursive and iterative factorial function. <span class="badge">recursion</span></li>
+                    <li><strong>🔄 2. Palindrome Number</strong> – Check if integer is palindrome (e.g., 12321). <span class="badge">loops</span></li>
+                    <li><strong>📐 3. Rectangle Class</strong> – Create class with length, width; compute area/perimeter. <span class="badge">OOP</span></li>
+                    <li><strong>🔄 4. Swap using references</strong> – Pass by reference swap. <span class="badge">functions</span></li>
+                    <li><strong>➕ 5. Simple Calculator (switch)</strong> – Input two numbers and operator. <span class="badge">control flow</span></li>
+                    <li><strong>🌀 6. Fibonacci Series</strong> – Generate first N terms. <span class="badge">loops</span></li>
+                    <li><strong>🎓 7. Student Gradebook</strong> – Store name and marks, compute average. <span class="badge">arrays/classes</span></li>
+                </ul>
+                <hr>
+                <h3>💡 Sample Challenge: Prime Check</h3>
+                <pre>
+bool isPrime(int n) {
+    if (n <= 1) return false;
+    for (int i = 2; i * i <= n; i++)
+        if (n % i == 0) return false;
+    return true;
+}
+                </pre>
+                <p>Implement main to test prime numbers. Happy coding!</p>
+                <div class="output-box">
+                    <i>⚡ Remember to compile using g++ filename.cpp -o program and run in terminal.</i>
+                </div>
+            </div>
+        </td>
+    </tr>
+    
+    <!-- FOOTER (old school) -->
+    <tr>
+        <td colspan="2" class="footer">
+            <span>© 2005 C++ Learning Hub – All tutorials under fair use. Best viewed in 1024x768 resolution, Internet Explorer 6.0+</span><br/>
+            <span style="font-family: monospace;">Last updated: March 2005 | <a href="#" style="color:#003366;">Contact Webmaster</a></span>
+        </td>
+    </tr>
+</table>
+
+<!-- retro hit counter effect (static) -->
+</body>
+</html>
